@@ -1,0 +1,79 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: Customer-Relation-Management
+  flyway:
+    baselineOnMigrate: true
+  datasource:
+    username: root
+    password: admin123
+    url: jdbc:postgresql://localhost:5433/crm
+
+  main:
+      allow-bean-definition-overriding: true
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: validate
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
+
+cache:
+  redis:
+    host: localhost
+    port: 8888
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  tracing:
+    sampling:
+      probability: 1.0 # only for testing purpose, switch back to 0.1 for production code
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+security:
+  configs:
+    secretKey: "868DE142D37FB146EC9B45C7172FF61B60349E31C5DFB17ECC7D40865FF261D4"
+    accessTokenExpiration: 1200000
+    refreshTokenExpiration: 3600000
+    iss: "http://localhost:8082"
+    auds:
+      - "http://localhost:8081"
+      - "http://localhost:8083"
+      - "http://localhost:8084"

@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  db-migrations:
+    image: postgres:14-alpine
+    container_name: db-migrations
+    restart: unless-stopped
+    privileged: true
+    networks:
+      - postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: admin123
+    volumes:
+      - ../postgresql/init-payment.sql:/docker-entrypoint-initdb.d/init-payment.sql
+      - ../postgresql/init-crm.sql:/docker-entrypoint-initdb.d/init-crm.sql
+      - ../postgresql/init-pem.sql:/docker-entrypoint-initdb.d/init-pem.sql
+      - ../postgresql/init-shop.sql:/docker-entrypoint-initdb.d/init-shop.sql
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - spring
+  rabbitmq:
+    image: rabbitmq:3.9.11-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - spring
+
+  redis:
+    image: "redis:7.2.3-alpine"
+    container_name: redis-server
+    ports:
+      - "8888:6379"
+
+  smtp-server:
+    image: tvial/docker-mailserver
+    ports:
+      - "587:587"
+    environment:
+      SMTP_USER: root
+      SMTP_PASSWORD: admin123
+      VIRTUAL_HOST: mailserver.local # Replace with your desired hostname or domain name
+      DOMAINNAME: mailserver.local
+    networks:
+      - smtp-network
+
+networks:
+  postgres:
+    driver: bridge
+  spring:
+    driver: bridge
+  smtp-network:
+    driver: bridge

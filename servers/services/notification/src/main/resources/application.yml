@@ -1,0 +1,18 @@
+server:
+  port: 8088
+
+spring:
+  devtools:
+    restart:
+      enabled: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: khanhk56a12@gmail.com
+    password: exscqriltlunpmdx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

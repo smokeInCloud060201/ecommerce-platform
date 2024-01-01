@@ -1,0 +1,23 @@
+
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+K
+servers/services/parent.iml,b\9\b9c26da37cc0e4569148b2ef1d1f82f3a4dbe3d7
+>
+diagram.drawio,8\3\837dbc0941202df742d1fb7e8dbbb5b28b22654a
+f
+6infrastructure/docker-composes/docker-compose-base.yml,f\a\faaf93feb8eb8c4e691bf050980cb1c5da99502c
+ó
+gservers/services/notification/src/main/java/com/karson/ecommerce/notification/models/MailStructure.java,2\3\2310b8c0053f8c1a2844f2c109d2fbde6bef4dd6
+ù
+mservers/services/notification/src/main/java/com/karson/ecommerce/notification/controllers/MailController.java,1\c\1c9fd07a81f6ddcea496adc9ed11f8e1a10c45d3
+ó
+gservers/services/notification/src/main/java/com/karson/ecommerce/notification/services/MailService.java,8\6\862e9226055281e7515df19ae7059708c1a04235
+†
+pservers/services/notification/src/main/java/com/karson/ecommerce/notification/services/impl/MailServiceImpl.java,b\3\b32e09a4b77bb6eb07a1680d905932d128de20ad
+ö
+jservers/services/notification/src/main/java/com/karson/ecommerce/notification/NotificationApplication.java,b\4\b4d88746a2f83f0493812935fda55f7dc6ba51da
+H
+servers/services/pom.xml,6\2\62ac575ebc415191f3b0477b53dd8d12f2c98a79
+U
+%servers/services/notification/pom.xml,5\8\58470ba0c73b908790697f3cca930fad1447092b
