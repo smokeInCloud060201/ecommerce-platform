@@ -33,7 +33,7 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/get-user-by-token")
-    public ResponseDto<UserResponseDto> loadUserByToken() throws ResourceNotFoundException {
+    public ResponseDto<UserResponseDto> loadUserByToken() {
         return DtoUtil.toResponseDto((userService.loadUserByToken()));
     }
 
