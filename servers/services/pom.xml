@@ -32,6 +32,9 @@
         <image>parent/${project.artifactId}:${project.version}</image>
         <flyway.version>10.4.1</flyway.version>
         <mapstruct.version>1.6.0.Beta1</mapstruct.version>
+        <sonar.organization>khanh-dang-hoc-code</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
     </properties>
 
     <dependencies>
