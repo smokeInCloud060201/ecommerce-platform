@@ -1,4 +1,4 @@
-package com.karson.ecommerce.common.clients.notification.email;
+package com.karson.ecommerce.crmapi.clients.notifications.email;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

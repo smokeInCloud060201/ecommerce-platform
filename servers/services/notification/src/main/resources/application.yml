@@ -16,3 +16,14 @@ spring:
           auth: true
           starttls:
             enable: true
+  application:
+    name: Notification-Service
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
