@@ -1,5 +1,6 @@
 package com.karson.ecommerce.crmapi.controller;
 
+import com.karson.ecommerce.common.clients.notification.email.EmailClient;
 import com.karson.ecommerce.common.controller.BaseController;
 import com.karson.ecommerce.common.dtos.ResponseDto;
 import com.karson.ecommerce.common.dtos.TokenDto;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController extends BaseController {
 
     private final UserServiceImpl userService;
+    private final EmailClient emailClient;
 
 
     @PostMapping("/register")
@@ -30,6 +32,8 @@ public class AuthenticationController extends BaseController {
 
     @PostMapping("/login")
     public ResponseDto<TokenDto> login(@RequestBody LoginRequestDto loginRequest) throws ResourceNotFoundException {
-        return DtoUtil.toResponseDto(userService.login(loginRequest));
+//        return DtoUtil.toResponseDto(userService.login(loginRequest));
+
+        return DtoUtil.toResponseDto(null);
     }
 }

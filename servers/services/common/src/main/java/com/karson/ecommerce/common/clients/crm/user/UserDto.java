@@ -1,4 +1,4 @@
-package com.karson.ecommerce.common.clients.user;
+package com.karson.ecommerce.common.clients.crm.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

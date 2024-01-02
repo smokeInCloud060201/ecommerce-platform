@@ -21,3 +21,87 @@ H
 servers/services/pom.xml,6\2\62ac575ebc415191f3b0477b53dd8d12f2c98a79
 U
 %servers/services/notification/pom.xml,5\8\58470ba0c73b908790697f3cca930fad1447092b
+Z
+*services/api/notification/notification.iml,5\0\5083f3469cf6ba06b5ab3d528b114bd8ea6d6a82
+R
+"services/api/shop-api/shop-api.iml,7\c\7c94245caa4da9551b39b3260cbf07cc1acc706d
+X
+(services/api/payment-api/payment-api.iml,c\7\c74894ceaec821a0b67b0e323f5a63da3048cddf
+Q
+!servers/services/shop-api/pom.xml,a\5\a53c0898053a1c0bd2b843a84b5c67e421509e94
+P
+ servers/services/pem-api/pom.xml,1\e\1e9b66677788832045affb32dae9db761491dd8c
+N
+services/api/common/common.iml,1\4\1455dd51bd227972bfc522e18ea91c80fdab3a62
+G
+services/api/parent.iml,5\6\562e49ae8ea2b73a3447550392400ae0f89c91f3
+T
+$servers/services/payment-api/pom.xml,c\d\cda80f625f2be8030fe9a5343bc9704a2da50a47
+P
+ servers/services/crm-api/pom.xml,4\b\4bbc9e9b810af020ce07755a83c3af5655306154
+P
+ services/api/gateway/gateway.iml,3\4\343e4c87779d31de7fc2beed9d7b59f724448ff1
+P
+ servers/services/gateway/pom.xml,3\5\358c6853847648e58c18f685dbcf1934e2e8b809
+â
+Yservers/services/common/src/main/java/com/karson/ecommerce/common/aop/LoggableAspect.java,7\a\7a5aff8d5103be5b381ea8c9e5f59d046bc06ed6
+P
+ services/api/pem-api/pem-api.iml,c\6\c6c172b97f24dfdd7c9d977f8ee86fb3c4c0fed8
+O
+servers/services/common/pom.xml,6\2\6289716ac507c9dd81de134529809dd1e0744bd9
+P
+ .github/workflows/sonarcloud.yml,0\7\077a84aad902191fd63fd374880221279f02a65d
+L
+.github/workflows/codeql.yml,3\7\37c182e857c9d9bb0eb6218a00392ab9f8e4d264
+í
+bservers/services/common/src/main/java/com/karson/ecommerce/common/utils/RandomLongIdGenerator.java,7\a\7aca7041d1ecee4024c1fc0ac7186617afdf5779
+ä
+Zservers/services/common/src/main/java/com/karson/ecommerce/common/entities/BaseEntity.java,6\b\6b4f60eb882f3f2c9a4c02bb1dae631d985938e8
+ì
+cservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/configs/security/JwtService.java,1\9\19035a487671b24cf860ca2965baedb3273dc712
+å
+\servers/services/gateway/src/main/java/com/karson/ecommerce/gateway/security/JwtService.java,5\c\5c74338f17507f30e389a23f1b55d6ca56b9ae21
+É
+Sservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/entity/Role.java,1\c\1cd6738114ddbb817e186a086802153bb49bc67c
+É
+Sservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/entity/User.java,0\f\0f34de5fff47c9199b50ad0e371ef38034569fa3
+é
+^servers/services/common/src/main/java/com/karson/ecommerce/common/clients/user/UserClient.java,e\7\e7334d839f80badcbf19750718a061e5825d89c3
+ã
+[servers/services/common/src/main/java/com/karson/ecommerce/common/clients/user/UserDto.java,f\9\f9f272e975b0bcf17c3763eb232a45eb51d05ce9
+ê
+`servers/services/common/src/main/java/com/karson/ecommerce/common/repository/BaseRepository.java,6\e\6eaed115c28acecd76f697388100984414bf8bb8
+å
+\servers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/services/UserService.java,8\f\8fd5153b234f62f8c4008bb4a3020a405a9fb50e
+Ö
+Uservers/services/common/src/main/java/com/karson/ecommerce/common/utils/JsonUtil.java,f\4\f49774d0b02d5d9fbf8b56430ce943332dfc28b5
+ì
+cservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/repositories/UserRepository.java,2\f\2f081dc5467765aa2c51728cc40435e19a6a1f7a
+ã
+[servers/services/common/src/main/java/com/karson/ecommerce/common/anotations/ViewScope.java,4\2\42d2ded87a4465e2c09dc04ca8bccb8e9ad489d4
+ë
+aservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/controller/RoleController.java,a\6\a6090be78537b60cae851076fbe9a2e9a30d7e36
+â
+Yservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/mapper/UserMapper.java,9\1\913b9698516a47222f2a0279f0d04a2291f1ebb9
+õ
+kservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/controller/AuthenticationController.java,6\5\65a3c460890578ec8f9b0a29e8edf2362541c656
+ô
+iservers/services/common/src/main/java/com/karson/ecommerce/common/constants/ExceptionMessageConstant.java,f\9\f91aa18a8b0d896200f8a93d11809fb87cd81585
+ï
+eservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/services/impl/UserServiceImpl.java,e\f\ef05733615122826beb1882b9c8cc52598caea92
+ï
+eservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/services/impl/RoleServiceImpl.java,a\0\a02dcff38439b99979c8a8c699c08a9f44cd00b7
+ö
+jservers/services/common/src/main/java/com/karson/ecommerce/common/configs/sercurity/context/AuthModel.java,f\c\fc3c8ff56f32ac88e34627f3b66c9ad0b0b0b78b
+ù
+mservers/services/common/src/main/java/com/karson/ecommerce/common/configs/sercurity/context/ContextModel.java,9\6\9667afc79eda0d54814fab9403e5aea433166a68
+è
+_servers/services/gateway/src/main/java/com/karson/ecommerce/gateway/configs/RouterValidate.java,c\9\c967d793e5cbc14db1fb5dd3fcdce5614bb50e92
+é
+^servers/services/gateway/src/main/java/com/karson/ecommerce/gateway/configs/GatewayFilter.java,1\a\1a5019ee89ab1e8e652878a55bb1c1efe0f8926b
+P
+ services/api/crm-api/crm-api.iml,b\d\bdce3b7429b56a37f666f473969954c3bbfea92a
+ì
+cservers/services/gateway/src/main/java/com/karson/ecommerce/gateway/security/WhitelistEndpoint.java,1\1\1148772e35faaf541f6ab88fea7827f0f8c064a7
+ë
+aservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/controller/UserController.java,f\5\f55894b4c817325e92f4892f541c5895e557974f
