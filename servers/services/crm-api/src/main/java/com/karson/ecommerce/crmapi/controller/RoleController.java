@@ -36,7 +36,7 @@ public class RoleController extends BaseController {
     }
 
     @GetMapping
-    public ResponseDto<List<RoleDto>> getRoles() throws ResourceNotFoundException {
+    public ResponseDto<List<RoleDto>> getRoles() {
         return DtoUtil.toResponseDto(roleService.getRoles(null));
     }
 }

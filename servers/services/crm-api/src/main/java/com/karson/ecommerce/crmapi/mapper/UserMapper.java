@@ -3,7 +3,6 @@ package com.karson.ecommerce.crmapi.mapper;
 import com.karson.ecommerce.crmapi.dtos.auth.UserRegisterRequestDto;
 import com.karson.ecommerce.crmapi.dtos.user.UserResponseDto;
 import com.karson.ecommerce.crmapi.entity.User;
-import lombok.RequiredArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

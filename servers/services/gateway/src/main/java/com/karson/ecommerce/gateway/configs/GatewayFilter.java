@@ -13,7 +13,6 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 
-
 @Configuration
 @RequiredArgsConstructor
 @Slf4j
@@ -29,25 +28,25 @@ public class GatewayFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, org.springframework.cloud.gateway.filter.GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-//        if (!routerValidate.isSecured.test(request)) {
-//            if (isAuthMissing(request)) {
-//                return onError(exchange, "Authorization header is missing in request", HttpStatus.UNAUTHORIZED);
-//            }
-//
-//            final String token = this.getAuthHeader(request);
-//
-//            if (jwtService.isTokenInValid(token))
-//                return onError(exchange, "Authorization header is invalid", HttpStatus.UNAUTHORIZED);
-//
-//            this.populateRequestWithHeaders(exchange, token);
-//        }
+        if (!routerValidate.isSecured.test(request)) {
+            if (isAuthMissing(request)) {
+                return onError(exchange, "Authorization header is missing in request");
+            }
+
+            final String token = this.getAuthHeader(request);
+
+            if (jwtService.isTokenInvalid(token))
+                return onError(exchange, "Authorization header is invalid");
+
+            this.populateRequestWithHeaders(exchange, token);
+        }
         return chain.filter(exchange);
     }
 
-    private Mono<Void> onError(ServerWebExchange exchange, String err, HttpStatus httpStatus) {
+    private Mono<Void> onError(ServerWebExchange exchange, String err) {
         log.error(err);
         ServerHttpResponse response = exchange.getResponse();
-        response.setStatusCode(httpStatus);
+        response.setStatusCode(HttpStatus.UNAUTHORIZED);
         return response.setComplete();
     }
 

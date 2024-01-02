@@ -8,14 +8,11 @@ import org.springframework.stereotype.Component;
 import java.util.function.Predicate;
 
 @Component
+@RequiredArgsConstructor
 public class RouterValidate {
-    private WhitelistEndpoint whitelistEndpoint ;
+    private final WhitelistEndpoint whitelistEndpoint ;
 
-    public RouterValidate(WhitelistEndpoint whitelistEndpoint) {
-        this.whitelistEndpoint = whitelistEndpoint;
-    }
-
-    public Predicate<ServerHttpRequest> isSecured =
+    public final Predicate<ServerHttpRequest> isSecured =
             serverHttpRequest -> !whitelistEndpoint.getWhitelists().isEmpty() && whitelistEndpoint.getWhitelists().stream()
                     .anyMatch(endpoint -> serverHttpRequest.getURI().getPath().contains(endpoint));
 }

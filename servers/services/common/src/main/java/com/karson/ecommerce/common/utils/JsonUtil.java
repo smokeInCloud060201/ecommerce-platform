@@ -76,18 +76,16 @@ public class JsonUtil {
         return null;
     }
 
-    public static Map<String, Object> convertToMap(Object obj) {
+    private static <T> T convert(Object obj, TypeReference<T> typeReference) {
         initialize();
-        return mapper.convertValue(obj, new TypeReference<>() {});
+        return mapper.convertValue(obj, typeReference);
     }
 
-    public static Map<String, String> convertToMapString(Object obj) {
-        initialize();
-        return mapper.convertValue(obj, new TypeReference<>() {});
+    public static Map<String, Object> convertToMap(Object obj) {
+        return convert(obj, new TypeReference<>() {});
     }
 
     public static Set<String> convertToSet(Object obj) {
-        initialize();
-        return mapper.convertValue(obj, new TypeReference<>() {});
+        return convert(obj, new TypeReference<Set<String>>() {});
     }
 }

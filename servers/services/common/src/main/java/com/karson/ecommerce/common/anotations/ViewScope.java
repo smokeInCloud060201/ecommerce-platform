@@ -1,6 +1,5 @@
 package com.karson.ecommerce.common.anotations;
 
-import lombok.Getter;
 
 public class ViewScope {
 

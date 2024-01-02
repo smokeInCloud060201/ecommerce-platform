@@ -16,8 +16,9 @@ import com.karson.ecommerce.crmapi.mapper.UserMapper;
 import com.karson.ecommerce.crmapi.repositories.RoleRepository;
 import com.karson.ecommerce.crmapi.repositories.UserRepository;
 import com.karson.ecommerce.crmapi.services.UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
+import java.util.Collections;
+
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +31,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -39,8 +40,9 @@ public class UserServiceImpl implements UserService {
     private final AuthenticationManager authenticationManager;
     private final RoleRepository roleRepository;
 
-    @Qualifier(value = "jwtService")
     private final JwtService jwtService;
+
+    private static final String NOT_FOUND_USER = "Not found user";
 
     @Override
     public UserResponseDto upsertUser(UserRegisterRequestDto userRegisterRequestDto) {
@@ -52,12 +54,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto findByUserName(String userName) throws ResourceNotFoundException {
-        User user = userRepository.findByUsername(userName).orElseThrow(() -> new ResourceNotFoundException("Not found user"));
+        User user = userRepository.findByUsername(userName).orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_USER));
         return userMapper.mapToDto(user);
     }
 
     @Override
-    public UserResponseDto loadUserByToken() throws ResourceNotFoundException {
+    public UserResponseDto loadUserByToken() {
         User userDetails = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userMapper.mapToDto(userDetails);
     }
@@ -66,19 +68,19 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long userId) throws ResourceNotFoundException {
         userRepository.delete(
                 userRepository.findById(userId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Not found user"))
+                        .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_USER))
         );
     }
 
     @Override
     public UserResponseDto findByUserId(Long userId) throws ResourceNotFoundException {
-        User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Not found user"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_USER));
         return userMapper.mapToDto(user);
     }
 
     @Override
     public List<UserResponseDto> searchUser(SearchDto searchDto) {
-        return null;
+        return Collections.emptyList();
     }
 
     public TokenDto login(LoginRequestDto loginRequest) throws ResourceNotFoundException {

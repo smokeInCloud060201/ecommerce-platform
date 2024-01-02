@@ -1,17 +1,19 @@
 package com.karson.ecommerce.common.configs.sercurity.context;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 
+import java.io.Serializable;
 
+
+@EqualsAndHashCode(callSuper = true)
 @Builder
-@Getter
-@Setter
-public class ContextModel extends AbstractAuthenticationToken {
+@Data
+public class ContextModel extends AbstractAuthenticationToken implements Serializable {
 
-    private final AuthModel authModel;
+    private final transient AuthModel authModel;
 
     public ContextModel(AuthModel authModel) {
         super(authModel.getGrantedAuthoritySet());

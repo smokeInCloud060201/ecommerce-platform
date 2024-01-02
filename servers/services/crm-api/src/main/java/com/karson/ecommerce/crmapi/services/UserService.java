@@ -7,7 +7,6 @@ import com.karson.ecommerce.crmapi.dtos.auth.LoginRequestDto;
 import com.karson.ecommerce.crmapi.dtos.auth.UserRegisterRequestDto;
 import com.karson.ecommerce.crmapi.dtos.user.UserResponseDto;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public interface UserService {
