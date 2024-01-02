@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 public class RouterValidate {
     private final WhitelistEndpoint whitelistEndpoint ;
 
-    public final Predicate<ServerHttpRequest> isSecured =
+    public Predicate<ServerHttpRequest> isSecured =
             serverHttpRequest -> !whitelistEndpoint.getWhitelists().isEmpty() && whitelistEndpoint.getWhitelists().stream()
                     .anyMatch(endpoint -> serverHttpRequest.getURI().getPath().contains(endpoint));
 }
