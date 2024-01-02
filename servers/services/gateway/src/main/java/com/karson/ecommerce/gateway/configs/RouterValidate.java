@@ -5,14 +5,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Predicate;
-
 @Component
 @RequiredArgsConstructor
 public class RouterValidate {
-    private final WhitelistEndpoint whitelistEndpoint ;
+    private final WhitelistEndpoint whitelistEndpoint;
 
-    public Predicate<ServerHttpRequest> isSecured =
-            serverHttpRequest -> !whitelistEndpoint.getWhitelists().isEmpty() && whitelistEndpoint.getWhitelists().stream()
-                    .anyMatch(endpoint -> serverHttpRequest.getURI().getPath().contains(endpoint));
+    public boolean isSecured(ServerHttpRequest serverHttpRequest) {
+        return !whitelistEndpoint.getWhitelists().isEmpty() &&
+                whitelistEndpoint.getWhitelists().stream()
+                        .anyMatch(endpoint -> serverHttpRequest.getURI().getPath().contains(endpoint));
+    }
+
 }

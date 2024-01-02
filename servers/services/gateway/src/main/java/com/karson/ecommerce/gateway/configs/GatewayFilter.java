@@ -28,7 +28,7 @@ public class GatewayFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, org.springframework.cloud.gateway.filter.GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-        if (!routerValidate.isSecured.test(request)) {
+        if (!routerValidate.isSecured(request)) {
             if (isAuthMissing(request)) {
                 return onError(exchange, "Authorization header is missing in request");
             }
