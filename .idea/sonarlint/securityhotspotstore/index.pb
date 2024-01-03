@@ -65,10 +65,6 @@ cservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/configs/secu
 Sservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/entity/Role.java,1\c\1cd6738114ddbb817e186a086802153bb49bc67c
 É
 Sservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/entity/User.java,0\f\0f34de5fff47c9199b50ad0e371ef38034569fa3
-é
-^servers/services/common/src/main/java/com/karson/ecommerce/common/clients/user/UserClient.java,e\7\e7334d839f80badcbf19750718a061e5825d89c3
-ã
-[servers/services/common/src/main/java/com/karson/ecommerce/common/clients/user/UserDto.java,f\9\f9f272e975b0bcf17c3763eb232a45eb51d05ce9
 ê
 `servers/services/common/src/main/java/com/karson/ecommerce/common/repository/BaseRepository.java,6\e\6eaed115c28acecd76f697388100984414bf8bb8
 å

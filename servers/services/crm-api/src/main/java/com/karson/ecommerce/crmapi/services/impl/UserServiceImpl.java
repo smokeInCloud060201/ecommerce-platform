@@ -4,7 +4,10 @@ import com.karson.ecommerce.common.configs.sercurity.context.AuthModel;
 import com.karson.ecommerce.common.configs.sercurity.context.ContextModel;
 import com.karson.ecommerce.common.dtos.SearchDto;
 import com.karson.ecommerce.common.dtos.TokenDto;
+import com.karson.ecommerce.common.enums.NotificationEmailType;
 import com.karson.ecommerce.common.exceptions.ResourceNotFoundException;
+import com.karson.ecommerce.crmapi.clients.notifications.email.EmailClient;
+import com.karson.ecommerce.crmapi.clients.notifications.email.EmailDto;
 import com.karson.ecommerce.crmapi.configs.security.JwtService;
 import com.karson.ecommerce.crmapi.dtos.auth.LoginRequestDto;
 import com.karson.ecommerce.crmapi.dtos.auth.UserRegisterRequestDto;
@@ -19,6 +22,7 @@ import com.karson.ecommerce.crmapi.services.UserService;
 import java.util.Collections;
 
 import lombok.AllArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,8 +43,8 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final RoleRepository roleRepository;
-
     private final JwtService jwtService;
+    private final EmailClient emailClient;
 
     private static final String NOT_FOUND_USER = "Not found user";
 
@@ -131,5 +135,13 @@ public class UserServiceImpl implements UserService {
         user.setRoles(roles);
         user = userRepository.save(user);
         return userMapper.mapToDto(user);
+    }
+
+    @Async
+    public void sendOtpMessage(String emailAddress) {
+        EmailDto emailTemplate = EmailDto.builder()
+                .emailType(NotificationEmailType.OTP)
+                .build();
+        emailClient.sendEmail(emailAddress, emailTemplate);
     }
 }

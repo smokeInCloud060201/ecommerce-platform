@@ -86,6 +86,6 @@ public class JsonUtil {
     }
 
     public static Set<String> convertToSet(Object obj) {
-        return convert(obj, new TypeReference<Set<String>>() {});
+        return convert(obj, new TypeReference<>() {});
     }
 }

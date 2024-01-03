@@ -77,10 +77,6 @@ aservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/controller/R
 eservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/services/impl/RoleServiceImpl.java,a\0\a02dcff38439b99979c8a8c699c08a9f44cd00b7
 ƒ
 Sservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/entity/User.java,0\f\0f34de5fff47c9199b50ad0e371ef38034569fa3
-Ž
-^servers/services/common/src/main/java/com/karson/ecommerce/common/clients/user/UserClient.java,e\7\e7334d839f80badcbf19750718a061e5825d89c3
-‹
-[servers/services/common/src/main/java/com/karson/ecommerce/common/clients/user/UserDto.java,f\9\f9f272e975b0bcf17c3763eb232a45eb51d05ce9
 ‰
 Yservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/mapper/UserMapper.java,9\1\913b9698516a47222f2a0279f0d04a2291f1ebb9
 “

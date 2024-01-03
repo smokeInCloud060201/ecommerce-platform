@@ -1,17 +1,16 @@
-package com.karson.ecommerce.crmapi.clients.notifications.email;
+package com.karson.ecommerce.notification.dtos;
 
 import com.karson.ecommerce.common.enums.NotificationEmailType;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class EmailDto {
+public class MailDto {
+    private String id;
     private NotificationEmailType emailType;
+    private String subject;
+    private String message;
 }

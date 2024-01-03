@@ -14,10 +14,8 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: admin123
     volumes:
-      - ../postgresql/init-payment.sql:/docker-entrypoint-initdb.d/init-payment.sql
-      - ../postgresql/init-crm.sql:/docker-entrypoint-initdb.d/init-crm.sql
-      - ../postgresql/init-pem.sql:/docker-entrypoint-initdb.d/init-pem.sql
-      - ../postgresql/init-shop.sql:/docker-entrypoint-initdb.d/init-shop.sql
+      - ../postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
@@ -25,6 +23,8 @@ services:
       - "9411:9411"
     networks:
       - spring
+
+######################################## MQ ########################################
   rabbitmq:
     image: rabbitmq:3.9.11-management-alpine
     container_name: rabbitmq
@@ -34,28 +34,51 @@ services:
     networks:
       - spring
 
+######################################## REDIS ########################################
+
   redis:
     image: "redis:7.2.3-alpine"
     container_name: redis-server
     ports:
       - "8888:6379"
 
-  smtp-server:
-    image: tvial/docker-mailserver
+######################################## KAFKA ########################################
+  kafka:
+    image: 'bitnami/kafka:latest'
+    container_name: spring_kafka
     ports:
-      - "587:587"
+      - '9094:9094'
+    restart: unless-stopped
     environment:
-      SMTP_USER: root
-      SMTP_PASSWORD: admin123
-      VIRTUAL_HOST: mailserver.local # Replace with your desired hostname or domain name
-      DOMAINNAME: mailserver.local
-    networks:
-      - smtp-network
+      - KAFKA_ENABLE_KRAFT=yes
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_LISTENERS=BROKER://kafka:9092,CONTROLLER://kafka:9093,EXTERNAL://:9094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=BROKER://kafka:9092,EXTERNAL://127.0.0.1:9094
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=BROKER
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,BROKER:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: spring_kafka-ui
+    ports:
+      - "8082:8082"
+    restart: unless-stopped
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+      - SERVER_PORT=8082
+    depends_on:
+      - kafka
+
 
 networks:
   postgres:
     driver: bridge
   spring:
-    driver: bridge
-  smtp-network:
     driver: bridge
