@@ -32,6 +32,9 @@ public class User extends BaseEntity implements UserDetails, Serializable {
     private String email;
     private String password;
 
+    @Column(name = "is_verified")
+    private boolean isVerified;
+
     @Column(name = "is_account_non_expired")
     private boolean isAccountNonExpired;
 

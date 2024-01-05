@@ -1,7 +1,7 @@
 package com.karson.ecommerce.crmapi.services;
 
 import com.karson.ecommerce.common.dtos.SearchDto;
-import com.karson.ecommerce.common.dtos.TokenDto;
+import com.karson.ecommerce.crmapi.dtos.TokenDto;
 import com.karson.ecommerce.common.exceptions.ResourceNotFoundException;
 import com.karson.ecommerce.crmapi.dtos.auth.LoginRequestDto;
 import com.karson.ecommerce.crmapi.dtos.auth.UserRegisterRequestDto;

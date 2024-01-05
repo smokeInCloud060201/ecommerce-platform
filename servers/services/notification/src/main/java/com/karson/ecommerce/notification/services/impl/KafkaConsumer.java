@@ -1,7 +1,7 @@
 package com.karson.ecommerce.notification.services.impl;
 
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 public class KafkaConsumer {
     private static final String TOPIC_NAME = "example-topic";
 
-    @KafkaListener(topics = TOPIC_NAME, groupId = "group-id")
+
+    @KafkaListener(topics = TOPIC_NAME, groupId = "${kafka.group-id-config}")
     public void listen(String message) {
         log.info(message);
     }

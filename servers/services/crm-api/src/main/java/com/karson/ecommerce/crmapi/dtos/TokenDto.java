@@ -1,4 +1,4 @@
-package com.karson.ecommerce.common.dtos;
+package com.karson.ecommerce.crmapi.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -3,8 +3,7 @@ package com.karson.ecommerce.crmapi.services.impl;
 import com.karson.ecommerce.common.configs.sercurity.context.AuthModel;
 import com.karson.ecommerce.common.configs.sercurity.context.ContextModel;
 import com.karson.ecommerce.common.dtos.SearchDto;
-import com.karson.ecommerce.common.dtos.TokenDto;
-import com.karson.ecommerce.common.enums.NotificationEmailType;
+import com.karson.ecommerce.crmapi.dtos.TokenDto;
 import com.karson.ecommerce.common.exceptions.ResourceNotFoundException;
 import com.karson.ecommerce.crmapi.clients.notifications.email.EmailClient;
 import com.karson.ecommerce.crmapi.clients.notifications.email.EmailDto;
@@ -15,6 +14,7 @@ import com.karson.ecommerce.crmapi.dtos.user.UserResponseDto;
 import com.karson.ecommerce.crmapi.entity.Permission;
 import com.karson.ecommerce.crmapi.entity.Role;
 import com.karson.ecommerce.crmapi.entity.User;
+import com.karson.ecommerce.crmapi.enums.NotificationEmailType;
 import com.karson.ecommerce.crmapi.mapper.UserMapper;
 import com.karson.ecommerce.crmapi.repositories.RoleRepository;
 import com.karson.ecommerce.crmapi.repositories.UserRepository;
@@ -29,9 +29,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,6 +50,7 @@ public class UserServiceImpl implements UserService {
     private final EmailClient emailClient;
 
     private static final String NOT_FOUND_USER = "Not found user";
+    private static final String OTP_MAIL_KEY = "otp";
 
     @Override
     public UserResponseDto upsertUser(UserRegisterRequestDto userRegisterRequestDto) {
@@ -139,9 +143,25 @@ public class UserServiceImpl implements UserService {
 
     @Async
     public void sendOtpMessage(String emailAddress) {
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put(OTP_MAIL_KEY, generateOTP());
         EmailDto emailTemplate = EmailDto.builder()
                 .emailType(NotificationEmailType.OTP)
+                .parameters(parameters)
                 .build();
         emailClient.sendEmail(emailAddress, emailTemplate);
+    }
+
+    private String generateOTP() {
+        int otpLength = 6;
+
+        StringBuilder otpBuilder = new StringBuilder();
+
+        for (int i = 0; i < otpLength; i++) {
+            int digit = ThreadLocalRandom.current().nextInt(10);
+            otpBuilder.append(digit);
+        }
+
+        return otpBuilder.toString();
     }
 }

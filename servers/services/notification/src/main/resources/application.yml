@@ -1,12 +1,15 @@
 server:
   port: 8088
+  http2:
+    enabled: false
 
+########################################## Spring ##########################################
 spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: khanhk56a12@gmail.com
-    password: exscqriltlunpmdx
+    username: karson.ecommerce@gmail.com
+    password: ozbtnfxwkvyfhvlj
     properties:
       mail:
         smtp:
@@ -38,15 +41,22 @@ spring:
       - org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration
       - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
 
+########################################## Logs ##########################################
 logging:
   pattern:
     level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+  level:
+    org:
+      apache:
+        kafka: DEBUG
 
+########################################## Caching - Redis ##########################################
 cache:
   redis:
     host: localhost
     port: 8888
 
+########################################## Trace and Monitor - Prometheus Zipkin ##########################################
 management:
   endpoints:
     web:
@@ -69,7 +79,7 @@ management:
     tracing:
       endpoint: http://localhost:9411/api/v2/spans
 
-
+########################################## Cloud manage services - Eureka ##########################################
 eureka:
   instance:
     hostname: localhost
@@ -79,10 +89,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
 
+########################################## Event Message - Kafka ##########################################
 kafka:
   host: localhost:8088
-  group-id-config: group-id
-  enable-auto-config: false
-  auto-commit-interval-config: 100
-  session-timeout-config: 15000
-  offset-reset-config: earliest
+  group-id-config: notification

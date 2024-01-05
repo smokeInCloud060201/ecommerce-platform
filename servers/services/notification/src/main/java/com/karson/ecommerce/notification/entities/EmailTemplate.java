@@ -1,7 +1,7 @@
 package com.karson.ecommerce.notification.entities;
 
 import com.karson.ecommerce.common.entities.BaseEntity;
-import com.karson.ecommerce.common.enums.NotificationEmailType;
+import com.karson.ecommerce.notification.enums.NotificationEmailType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -22,7 +22,6 @@ public class EmailTemplate extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private NotificationEmailType emailType;
-
     private String subject;
     private String message;
 }

@@ -1,4 +1,4 @@
-package com.karson.ecommerce.common.enums;
+package com.karson.ecommerce.crmapi.enums;
 
 import lombok.Getter;
 

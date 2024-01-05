@@ -2,7 +2,7 @@ package com.karson.ecommerce.crmapi.controller;
 
 import com.karson.ecommerce.common.controller.BaseController;
 import com.karson.ecommerce.common.dtos.ResponseDto;
-import com.karson.ecommerce.common.dtos.TokenDto;
+import com.karson.ecommerce.crmapi.dtos.TokenDto;
 import com.karson.ecommerce.common.exceptions.ResourceNotFoundException;
 import com.karson.ecommerce.common.utils.DtoUtil;
 import com.karson.ecommerce.crmapi.dtos.auth.LoginRequestDto;
@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -32,5 +33,11 @@ public class AuthenticationController extends BaseController {
     @PostMapping("/login")
     public ResponseDto<TokenDto> login(@RequestBody LoginRequestDto loginRequest) throws ResourceNotFoundException {
         return DtoUtil.toResponseDto(userService.login(loginRequest));
+    }
+
+    @PostMapping("/send")
+    public ResponseDto<String> sendOTP(@RequestParam String email) throws ResourceNotFoundException {
+        userService.sendOtpMessage(email);
+        return DtoUtil.toResponseDto("Successfully sent");
     }
 }

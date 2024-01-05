@@ -1,6 +1,7 @@
 server:
   port: 8082
 
+########################################## Spring ##########################################
 spring:
   application:
     name: Customer-Relation-Management
@@ -25,6 +26,7 @@ spring:
         use_sql_comments: true
         format_sql: true
 
+########################################## Logs ##########################################
 logging:
   pattern:
     level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
@@ -33,11 +35,13 @@ logging:
       hibernate:
         type: trace
 
+########################################## Caching - Redis ##########################################
 cache:
   redis:
     host: localhost
     port: 8888
 
+########################################## Cloud manage services - Eureka ##########################################
 eureka:
   instance:
     hostname: localhost
@@ -47,6 +51,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
 
+########################################## Trace and Monitor - Prometheus Zipkin ##########################################
 management:
   endpoints:
     web:
@@ -69,6 +74,7 @@ management:
     tracing:
       endpoint: http://localhost:9411/api/v2/spans
 
+########################################## Security ##########################################
 security:
   configs:
     secretKey: "868DE142D37FB146EC9B45C7172FF61B60349E31C5DFB17ECC7D40865FF261D4"
@@ -79,3 +85,8 @@ security:
       - "http://localhost:8081"
       - "http://localhost:8083"
       - "http://localhost:8084"
+
+########################################## Event Message - Kafka ##########################################
+kafka:
+  host: localhost:8082
+  group-id-config: crm

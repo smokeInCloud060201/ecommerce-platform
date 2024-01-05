@@ -1,20 +1,19 @@
 package com.karson.ecommerce.notification.utils;
 
 
-import com.karson.ecommerce.notification.dtos.KeyValue;
 import com.karson.ecommerce.notification.entities.EmailTemplate;
 
-import java.util.List;
+import java.util.Map;
 
 public class EmailUtil {
     private EmailUtil() {}
-    public static void mapValueToTemplate(EmailTemplate emailTemplate, List<KeyValue> keyValueList) {
+    public static void mapValueToTemplate(EmailTemplate emailTemplate, Map<String, String> parameters) {
         String subject = emailTemplate.getSubject();
         String message = emailTemplate.getMessage();
 
-        for (KeyValue keyValue : keyValueList) {
-            subject = mapValueToKey(subject, keyValue.getKey(), keyValue.getValue());
-            message = mapValueToKey(message, keyValue.getKey(), keyValue.getValue());
+        for (String key : parameters.keySet()) {
+            subject = mapValueToKey(subject, key, parameters.get(key));
+            message = mapValueToKey(message, key, parameters.get(key));
         }
 
         emailTemplate.setMessage(message);

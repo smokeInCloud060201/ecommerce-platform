@@ -24,8 +24,8 @@
         <module name="crm-api" />
         <module name="pem-api" />
         <module name="eureka-server" />
-        <module name="payment-api" />
         <module name="gateway" />
+        <module name="payment-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

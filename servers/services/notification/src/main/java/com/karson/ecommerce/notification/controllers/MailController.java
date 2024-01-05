@@ -5,7 +5,6 @@ import com.karson.ecommerce.common.exceptions.ResourceNotFoundException;
 import com.karson.ecommerce.common.utils.DtoUtil;
 import com.karson.ecommerce.notification.dtos.MailDto;
 import com.karson.ecommerce.notification.services.MailService;
-import com.karson.ecommerce.notification.services.impl.KafkaProducer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,18 +21,11 @@ import java.util.List;
 public class MailController {
 
     private final MailService mailService;
-    private final KafkaProducer kafkaProducer;
 
     @PostMapping("/send")
-    public ResponseDto<String> sendEmail(@RequestParam String mailAddress, @RequestParam String mailType) throws ResourceNotFoundException {
-        mailService.sendEmail(mailAddress, mailType);
+    public ResponseDto<String> sendEmail(@RequestParam String mailAddress, @RequestBody MailDto mailDto) throws ResourceNotFoundException {
+        mailService.sendEmail(mailAddress, mailDto);
         return DtoUtil.toResponseDto("successfully");
-    }
-
-    @GetMapping("/send-message")
-    public String sendMessage() {
-        kafkaProducer.sendMessage("Hello, Kafka!");
-        return "Message sent to Kafka.";
     }
 
     @PostMapping("/template")

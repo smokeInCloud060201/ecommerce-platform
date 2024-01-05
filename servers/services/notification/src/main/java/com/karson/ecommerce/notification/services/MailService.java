@@ -7,7 +7,7 @@ import com.karson.ecommerce.notification.dtos.MailDto;
 import java.util.List;
 
 public interface MailService {
-    void sendEmail(String emailAddress, String mailType) throws ResourceNotFoundException;
+    void sendEmail(String emailAddress, MailDto mailDto) throws ResourceNotFoundException;
     MailDto upsertEmailTemplate(MailDto mailDto);
     void deleteEmailTemplate(Long emailId);
     List<MailDto> getAllEmailTemplates(SearchDto searchDto);
