@@ -2,7 +2,7 @@ package com.karson.ecommerce.notification.services.impl;
 
 import com.karson.ecommerce.common.dtos.SearchDto;
 import com.karson.ecommerce.common.exceptions.ResourceNotFoundException;
-import com.karson.ecommerce.notification.EmailTemplateMapper;
+import com.karson.ecommerce.notification.mapper.EmailTemplateMapper;
 import com.karson.ecommerce.notification.dtos.KeyValue;
 import com.karson.ecommerce.notification.dtos.MailDto;
 import com.karson.ecommerce.notification.entities.EmailTemplate;
@@ -16,7 +16,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service

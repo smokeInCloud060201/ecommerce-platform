@@ -1,4 +1,4 @@
-package com.karson.ecommerce.notification;
+package com.karson.ecommerce.notification.mapper;
 
 import com.karson.ecommerce.notification.dtos.MailDto;
 import com.karson.ecommerce.notification.entities.EmailTemplate;

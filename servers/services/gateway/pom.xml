@@ -12,6 +12,8 @@
     <version>1.0.0-SNAPSHOT</version>
     <name>gateway</name>
     <description>gateway</description>
+    <packaging>jar</packaging>
+
 
 
     <dependencies>

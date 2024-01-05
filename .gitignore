@@ -1,4 +1,7 @@
 ./services/test/load-test/target
 services/out/
-out/
-./.idea/sonarlint/
+out
+.idea/sonarlint
+.sonar
+*.pb
+**/sonarlint/**

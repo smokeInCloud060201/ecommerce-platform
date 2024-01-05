@@ -2,9 +2,6 @@ server:
   port: 8088
 
 spring:
-  devtools:
-    restart:
-      enabled: false
   mail:
     host: smtp.gmail.com
     port: 587
@@ -39,14 +36,11 @@ spring:
     exclude:
       - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
       - org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
 
 logging:
   pattern:
-    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
-  level:
-    org:
-      hibernate:
-        type: trace
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
 
 cache:
   redis:
@@ -84,3 +78,11 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     fetch-registry: true
     register-with-eureka: true
+
+kafka:
+  host: localhost:8088
+  group-id-config: group-id
+  enable-auto-config: false
+  auto-commit-interval-config: 100
+  session-timeout-config: 15000
+  offset-reset-config: earliest
