@@ -29,6 +29,7 @@ public class AuthModel {
         private Set<String> roles = new HashSet<>();
         @Builder.Default
         private Set<String> permissions = new HashSet<>();
+        private boolean isVerified;
         private boolean isEnabled;
         private boolean isAccountNonExpired;
         private boolean isAccountNonLocked;

@@ -3,38 +3,36 @@ package com.karson.ecommerce.crmapi.services.impl;
 import com.karson.ecommerce.common.configs.sercurity.context.AuthModel;
 import com.karson.ecommerce.common.configs.sercurity.context.ContextModel;
 import com.karson.ecommerce.common.dtos.SearchDto;
-import com.karson.ecommerce.crmapi.dtos.TokenDto;
+import com.karson.ecommerce.common.exceptions.BadRequestException;
 import com.karson.ecommerce.common.exceptions.ResourceNotFoundException;
-import com.karson.ecommerce.crmapi.clients.notifications.email.EmailClient;
-import com.karson.ecommerce.crmapi.clients.notifications.email.EmailDto;
 import com.karson.ecommerce.crmapi.configs.security.JwtService;
+import com.karson.ecommerce.crmapi.dtos.TokenDto;
 import com.karson.ecommerce.crmapi.dtos.auth.LoginRequestDto;
 import com.karson.ecommerce.crmapi.dtos.auth.UserRegisterRequestDto;
 import com.karson.ecommerce.crmapi.dtos.user.UserResponseDto;
+import com.karson.ecommerce.crmapi.entity.OTP;
 import com.karson.ecommerce.crmapi.entity.Permission;
 import com.karson.ecommerce.crmapi.entity.Role;
 import com.karson.ecommerce.crmapi.entity.User;
-import com.karson.ecommerce.crmapi.enums.NotificationEmailType;
 import com.karson.ecommerce.crmapi.mapper.UserMapper;
+import com.karson.ecommerce.crmapi.repositories.OTPRepository;
 import com.karson.ecommerce.crmapi.repositories.RoleRepository;
 import com.karson.ecommerce.crmapi.repositories.UserRepository;
+import com.karson.ecommerce.crmapi.services.NotificationService;
 import com.karson.ecommerce.crmapi.services.UserService;
-import java.util.Collections;
-
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,16 +45,19 @@ public class UserServiceImpl implements UserService {
     private final AuthenticationManager authenticationManager;
     private final RoleRepository roleRepository;
     private final JwtService jwtService;
-    private final EmailClient emailClient;
+    private final NotificationService notificationService;
+    private final OTPRepository otpRepository;
 
     private static final String NOT_FOUND_USER = "Not found user";
-    private static final String OTP_MAIL_KEY = "otp";
+
 
     @Override
+    @Transactional
     public UserResponseDto upsertUser(UserRegisterRequestDto userRegisterRequestDto) {
         User user = userMapper.mapToUser(userRegisterRequestDto);
         user.setPassword(passwordEncoder.encode(userRegisterRequestDto.getPassword()));
         userRepository.save(user);
+        notificationService.sendOtpMessage(user);
         return userMapper.mapToDto(user);
     }
 
@@ -110,6 +111,7 @@ public class UserServiceImpl implements UserService {
                                                 .map(Permission::getName))
                                         .collect(Collectors.toSet()))
                                 .email(user.getEmail())
+                                .isVerified(user.isVerified())
                                 .isEnabled(user.isEnabled())
                                 .isAccountNonExpired(user.isAccountNonExpired())
                                 .isAccountNonLocked(user.isAccountNonLocked())
@@ -141,27 +143,17 @@ public class UserServiceImpl implements UserService {
         return userMapper.mapToDto(user);
     }
 
-    @Async
-    public void sendOtpMessage(String emailAddress) {
-        Map<String, String> parameters = new HashMap<String, String>();
-        parameters.put(OTP_MAIL_KEY, generateOTP());
-        EmailDto emailTemplate = EmailDto.builder()
-                .emailType(NotificationEmailType.OTP)
-                .parameters(parameters)
-                .build();
-        emailClient.sendEmail(emailAddress, emailTemplate);
-    }
-
-    private String generateOTP() {
-        int otpLength = 6;
-
-        StringBuilder otpBuilder = new StringBuilder();
-
-        for (int i = 0; i < otpLength; i++) {
-            int digit = ThreadLocalRandom.current().nextInt(10);
-            otpBuilder.append(digit);
+    @Override
+    public void verifyOTP(String emailAddress, String otpCode) throws BadRequestException, ResourceNotFoundException {
+        OTP otp = otpRepository.findOtpByCode(otpCode, emailAddress).orElse(null);
+        if (otp != null && LocalDateTime.now().isBefore(otp.getExpiredAt())) {
+            User user = userRepository.findByUsername(emailAddress).orElseThrow(() -> new ResourceNotFoundException("Not found user"));
+            otp.setDeleted(true);
+            user.setVerified(true);
+            otpRepository.save(otp);
+            userRepository.save(user);
+            return;
         }
-
-        return otpBuilder.toString();
+        throw new BadRequestException("Failed");
     }
 }

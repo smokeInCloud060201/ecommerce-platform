@@ -26,7 +26,6 @@ public class UserController extends BaseController {
     private final UserServiceImpl userService;
 
     @GetMapping("/{userName}")
-    @PreAuthorize("hasAuthority('SCOPE_create:permission')")
     public ResponseDto<UserResponseDto> findUserByName(@PathVariable("userName") String userName) throws ResourceNotFoundException {
         return DtoUtil.toResponseDto((userService.findByUserName(userName)));
 

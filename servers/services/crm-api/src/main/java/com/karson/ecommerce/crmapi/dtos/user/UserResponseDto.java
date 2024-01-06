@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Builder
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +17,9 @@ public class UserResponseDto {
 
     @JsonProperty("email")
     private String email;
+
+    @JsonProperty("is_verified")
+    private boolean isVerified;
 
     @JsonProperty("is_account_non_expired")
     private boolean isAccountNonExpired;

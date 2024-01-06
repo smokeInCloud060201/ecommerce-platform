@@ -25,9 +25,12 @@ import java.util.Set;
 public class Role extends BaseEntity {
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "roles_permissions",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permissions_id"))
     private Set<Permission> permissionsRole = new HashSet<>();
+
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    Set<User> userRole = new HashSet<>();
 }

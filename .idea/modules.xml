@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/services/api/crm-api/crm-api.iml" filepath="$PROJECT_DIR$/services/api/crm-api/crm-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ecommerce-platform.iml" filepath="$PROJECT_DIR$/.idea/ecommerce-platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/servers/services/gateway/gateway.iml" filepath="$PROJECT_DIR$/servers/services/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/servers/services/notification/notification.iml" filepath="$PROJECT_DIR$/servers/services/notification/notification.iml" />
     </modules>
   </component>
 </project>

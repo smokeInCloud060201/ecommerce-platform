@@ -33,14 +33,14 @@ CREATE TABLE permissions
 
 CREATE TABLE roles_permissions
 (
-    role_id        BIGINT REFERENCES permissions (id),
-    permissions_id BIGINT REFERENCES roles (id),
+    role_id        BIGINT REFERENCES roles (id),
+    permissions_id BIGINT REFERENCES permissions (id),
     CONSTRAINT roles_permissions_pk PRIMARY KEY (role_id, permissions_id)
 );
 
 CREATE TABLE users_roles
 (
-    user_id BIGINT REFERENCES roles (id),
-    role_id BIGINT REFERENCES users (id),
+    user_id BIGINT REFERENCES users (id),
+    role_id BIGINT REFERENCES roles (id),
     CONSTRAINT users_roles_pk PRIMARY KEY (role_id, user_id)
 );

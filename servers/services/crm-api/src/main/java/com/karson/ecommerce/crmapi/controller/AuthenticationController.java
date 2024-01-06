@@ -2,9 +2,10 @@ package com.karson.ecommerce.crmapi.controller;
 
 import com.karson.ecommerce.common.controller.BaseController;
 import com.karson.ecommerce.common.dtos.ResponseDto;
-import com.karson.ecommerce.crmapi.dtos.TokenDto;
+import com.karson.ecommerce.common.exceptions.BadRequestException;
 import com.karson.ecommerce.common.exceptions.ResourceNotFoundException;
 import com.karson.ecommerce.common.utils.DtoUtil;
+import com.karson.ecommerce.crmapi.dtos.TokenDto;
 import com.karson.ecommerce.crmapi.dtos.auth.LoginRequestDto;
 import com.karson.ecommerce.crmapi.dtos.auth.UserRegisterRequestDto;
 import com.karson.ecommerce.crmapi.dtos.user.UserResponseDto;
@@ -35,9 +36,9 @@ public class AuthenticationController extends BaseController {
         return DtoUtil.toResponseDto(userService.login(loginRequest));
     }
 
-    @PostMapping("/send")
-    public ResponseDto<String> sendOTP(@RequestParam String email) throws ResourceNotFoundException {
-        userService.sendOtpMessage(email);
-        return DtoUtil.toResponseDto("Successfully sent");
+    @PostMapping("/verify-otp")
+    public ResponseDto<String> verifyOtp(@RequestParam String email, @RequestParam String code) throws BadRequestException, ResourceNotFoundException {
+        userService.verifyOTP(email, code);
+        return DtoUtil.toResponseDto("Successfully");
     }
 }

@@ -17,7 +17,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "email_tamplate")
+@Table(name = "email_template")
 public class EmailTemplate extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "type")

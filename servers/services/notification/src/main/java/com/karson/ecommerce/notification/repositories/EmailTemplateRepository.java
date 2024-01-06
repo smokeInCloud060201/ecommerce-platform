@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface EmailTemplateRepository extends BaseRepository<EmailTemplate, Long> {
-    @Query(value = "SELECT * FROM email_tamplate WHERE type = :type", nativeQuery = true)
+    @Query(value = "SELECT * FROM email_template WHERE type = :type", nativeQuery = true)
     Optional<EmailTemplate> findByEmailType(@Param("type") String type);
 }

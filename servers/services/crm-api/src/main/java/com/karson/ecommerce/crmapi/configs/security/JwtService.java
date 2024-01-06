@@ -51,6 +51,7 @@ public class JwtService {
                                     .email(email)
                                     .roles(roleSet)
                                     .permissions(permissionSet)
+                                    .isVerified((Boolean) userPrincipalMaps.get("verified"))
                                     .isEnabled((Boolean) userPrincipalMaps.get("enabled"))
                                     .isCredentialsNonExpired((Boolean) userPrincipalMaps.get("credentialsNonExpired"))
                                     .isAccountNonLocked((Boolean) userPrincipalMaps.get("accountNonLocked"))

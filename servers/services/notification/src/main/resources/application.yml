@@ -1,7 +1,5 @@
 server:
   port: 8088
-  http2:
-    enabled: false
 
 ########################################## Spring ##########################################
 spring:
@@ -45,10 +43,6 @@ spring:
 logging:
   pattern:
     level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
-  level:
-    org:
-      apache:
-        kafka: DEBUG
 
 ########################################## Caching - Redis ##########################################
 cache:
@@ -91,5 +85,5 @@ eureka:
 
 ########################################## Event Message - Kafka ##########################################
 kafka:
-  host: localhost:8088
+  host: localhost:9092
   group-id-config: notification

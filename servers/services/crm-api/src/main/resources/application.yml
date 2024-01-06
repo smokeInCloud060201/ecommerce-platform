@@ -5,13 +5,10 @@ server:
 spring:
   application:
     name: Customer-Relation-Management
-  flyway:
-    baselineOnMigrate: true
   datasource:
     username: root
     password: admin123
     url: jdbc:postgresql://localhost:5433/crm
-
   main:
       allow-bean-definition-overriding: true
   jpa:
@@ -33,7 +30,7 @@ logging:
   level:
     org:
       hibernate:
-        type: trace
+        jpa: trace
 
 ########################################## Caching - Redis ##########################################
 cache:
@@ -88,5 +85,5 @@ security:
 
 ########################################## Event Message - Kafka ##########################################
 kafka:
-  host: localhost:8082
+  host: localhost:9092
   group-id-config: crm

@@ -16,31 +16,26 @@ services:
     volumes:
       - ../postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  zipkin:
-    image: openzipkin/zipkin
-    container_name: zipkin
-    ports:
-      - "9411:9411"
-    networks:
-      - spring
-
 ######################################## REDIS ########################################
 
   redis:
     image: "redis:7.2.3-alpine"
     container_name: redis-server
+    restart: unless-stopped
     ports:
       - "8888:6379"
 
 ######################################## KAFKA ########################################
   zookeeper:
     image: wurstmeister/zookeeper:latest
+    restart: unless-stopped
     ports:
       - "2181:2181"
   kafka:
     depends_on:
       - zookeeper
     image: wurstmeister/kafka:2.13-2.8.1
+    restart: unless-stopped
     ports:
       - "9092:9092"
     expose:
