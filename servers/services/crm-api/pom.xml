@@ -11,7 +11,7 @@
     <artifactId>crm-api</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>crm-api</name>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <description>crm-api</description>
 
     <properties>
