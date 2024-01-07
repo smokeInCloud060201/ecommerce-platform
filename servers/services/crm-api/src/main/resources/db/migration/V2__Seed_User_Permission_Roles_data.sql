@@ -135,8 +135,8 @@ VALUES (1937076775882171205, 1053987496325183017)
 ON CONFLICT (role_id, permissions_id) DO NOTHING;
 
 
-INSERT INTO users(id, email, password)
-VALUES (4078938095660883582, 'khanhk56a123@gmail.com', '$2a$10$5VE4AkdL42to0pWeh2ZS0eyUs90xJKyfKy3SDJ.jTcxxNSptd3Lci')
+INSERT INTO users(id, email, password, is_verified)
+VALUES (4078938095660883582, 'khanhk56a123@gmail.com', '$2a$10$5VE4AkdL42to0pWeh2ZS0eyUs90xJKyfKy3SDJ.jTcxxNSptd3Lci', true)
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO users_roles(user_id, role_id)

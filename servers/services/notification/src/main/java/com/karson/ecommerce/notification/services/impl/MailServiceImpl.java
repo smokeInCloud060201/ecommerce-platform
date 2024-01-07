@@ -8,6 +8,11 @@ import com.karson.ecommerce.notification.mapper.EmailTemplateMapper;
 import com.karson.ecommerce.notification.repositories.EmailTemplateRepository;
 import com.karson.ecommerce.notification.services.MailService;
 import com.karson.ecommerce.notification.utils.EmailUtil;
+import jakarta.mail.Address;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -26,7 +31,7 @@ public class MailServiceImpl implements MailService {
     @Value("${spring.mail.username}")
     private String sender;
 
-    public void sendEmail(String emailAddress, MailDto mailDto) throws ResourceNotFoundException {
+    public void sendEmail(String emailAddress, MailDto mailDto) throws ResourceNotFoundException, MessagingException {
         EmailTemplate emailTemplate = emailTemplateRepository.findByEmailType(mailDto.getEmailType().name())
                 .orElseThrow(() -> new ResourceNotFoundException("Not found Email type"));
 
@@ -43,6 +48,23 @@ public class MailServiceImpl implements MailService {
         simpleMailMessage.setSubject(emailTemplate.getSubject());
         simpleMailMessage.setText(emailTemplate.getMessage());
         simpleMailMessage.setTo(emailAddress);
+
+        Address[] ccAddress = new Address[mailDto.getCcList().size()];
+
+        for (int i = 0; i < ccAddress.length; i++) {
+            ccAddress[i] = new InternetAddress(mailDto.getCcList().get(i));
+        }
+
+
+        for (String receiver : mailDto.getReceivers()) {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            mimeMessage.setSubject(emailTemplate.getSubject());
+            mimeMessage.setFrom(sender);
+            mimeMessage.setRecipients(Message.RecipientType.TO, receiver);
+            mimeMessage.setRecipients(Message.RecipientType.CC, ccAddress);
+            mimeMessage.setText(emailTemplate.getMessage());
+        }
+
 
         mailSender.send(simpleMailMessage);
     }

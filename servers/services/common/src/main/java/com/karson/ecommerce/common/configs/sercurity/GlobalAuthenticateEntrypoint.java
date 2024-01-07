@@ -16,10 +16,10 @@ import java.io.OutputStream;
 import static com.karson.ecommerce.common.constants.ResponseErrorCode.UN_AUTHORIZE;
 
 @Component
-public class AuthenticateEntrypoint  implements AuthenticationEntryPoint {
+public class GlobalAuthenticateEntrypoint implements AuthenticationEntryPoint {
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        ResponseDto<Object> responseDto = ResponseDto.<Object>builder()
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
+        ResponseDto<Object> responseDto = ResponseDto.builder()
                 .errorCode(UN_AUTHORIZE)
                 .errorMessage("UnAuthorize cause " + authException.getMessage())
                 .statusCode(401)

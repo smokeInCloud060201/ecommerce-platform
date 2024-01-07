@@ -1,7 +1,7 @@
 CREATE TABLE email_template
 (
     id         BIGINT    NOT NULL PRIMARY KEY,
-    type       TEXT      NOT NULL CHECK ( type <> '' ),
+    type       TEXT      NOT NULL UNIQUE CHECK ( type <> '' ),
     subject    TEXT      NOT NULL CHECK ( subject <> '' ),
     message    TEXT      NOT NULL CHECK ( message <> '' ),
     is_deleted BOOLEAN   NOT NULL DEFAULT FALSE,

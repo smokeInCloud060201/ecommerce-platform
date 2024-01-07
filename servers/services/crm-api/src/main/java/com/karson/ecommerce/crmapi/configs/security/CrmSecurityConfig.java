@@ -1,6 +1,6 @@
 package com.karson.ecommerce.crmapi.configs.security;
 
-import com.karson.ecommerce.common.configs.sercurity.AuthenticateEntrypoint;
+import com.karson.ecommerce.common.configs.sercurity.GlobalAuthenticateEntrypoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ public class CrmSecurityConfig {
 
     private final CrmFilter crmFilter;
     private final AuthenticationProvider authenticationProvider;
-    private final AuthenticateEntrypoint authenticationEntryPoint;
+    private final GlobalAuthenticateEntrypoint authenticationEntryPoint;
 
     @Bean
     @Primary

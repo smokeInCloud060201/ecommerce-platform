@@ -23,16 +23,14 @@ import com.karson.ecommerce.crmapi.services.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -75,10 +73,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long userId) throws ResourceNotFoundException {
-        userRepository.delete(
-                userRepository.findById(userId)
-                        .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_USER))
-        );
+        userRepository.delete(userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_USER)));
     }
 
     @Override
@@ -93,41 +88,20 @@ public class UserServiceImpl implements UserService {
     }
 
     public TokenDto login(LoginRequestDto loginRequest) throws ResourceNotFoundException {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                loginRequest.getUserName(),
-                loginRequest.getPassword()
-        ));
-        User user = userRepository.findByUsername(loginRequest.getUserName())
-                .orElseThrow(() -> new ResourceNotFoundException("Not exists User"));
+        User user = userRepository.findByUsername(loginRequest.getUserName()).orElseThrow(() -> new ResourceNotFoundException("Not exists User"));
 
-        ContextModel contextModel = ContextModel.builder()
-                .authModel(AuthModel.builder()
-                        .userPrincipal(AuthModel.UserPrincipal.builder()
-                                .roles(user.getRoles().stream()
-                                        .map(Role::getName)
-                                        .collect(Collectors.toSet()))
-                                .permissions(user.getRoles().stream()
-                                        .flatMap(role -> role.getPermissionsRole().stream()
-                                                .map(Permission::getName))
-                                        .collect(Collectors.toSet()))
-                                .email(user.getEmail())
-                                .isVerified(user.isVerified())
-                                .isEnabled(user.isEnabled())
-                                .isAccountNonExpired(user.isAccountNonExpired())
-                                .isAccountNonLocked(user.isAccountNonLocked())
-                                .isCredentialsNonExpired(user.isCredentialsNonExpired())
-                                .build())
-                        .grantedAuthoritySet(new HashSet<>(user.getAuthorities()))
-                        .build())
-                .build();
+        if (!user.isVerified()) {
+            throw new BadCredentialsException("Please verify your account first");
+        }
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword()));
+
+
+        ContextModel contextModel = ContextModel.builder().authModel(AuthModel.builder().userPrincipal(AuthModel.UserPrincipal.builder().roles(user.getRoles().stream().map(Role::getName).collect(Collectors.toSet())).permissions(user.getRoles().stream().flatMap(role -> role.getPermissionsRole().stream().map(Permission::getName)).collect(Collectors.toSet())).email(user.getEmail()).isVerified(user.isVerified()).isEnabled(user.isEnabled()).isAccountNonExpired(user.isAccountNonExpired()).isAccountNonLocked(user.isAccountNonLocked()).isCredentialsNonExpired(user.isCredentialsNonExpired()).build()).grantedAuthoritySet(new HashSet<>(user.getAuthorities())).build()).build();
 
         String accessToken = jwtService.generateAccessToken(contextModel);
         String refreshToken = jwtService.generateRefreshToken(contextModel);
 
-        return TokenDto.builder()
-                .accessToken(accessToken)
-                .refreshToken(refreshToken)
-                .build();
+        return TokenDto.builder().accessToken(accessToken).refreshToken(refreshToken).build();
     }
 
     @Override

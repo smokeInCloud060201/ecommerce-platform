@@ -85,5 +85,14 @@ eureka:
 
 ########################################## Event Message - Kafka ##########################################
 kafka:
+#  enabled: true
   host: localhost:9092
   group-id-config: notification
+
+########################################## Task Pool ##########################################
+task:
+  pools:
+    enabled: true
+    tasks-list:
+      - name: emailTaskExecutor
+        enabled: true

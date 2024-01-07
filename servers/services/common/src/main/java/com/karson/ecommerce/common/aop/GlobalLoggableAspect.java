@@ -31,7 +31,7 @@ import java.util.Optional;
 @Aspect
 @Slf4j
 @RequiredArgsConstructor
-public class LoggableAspect {
+public class GlobalLoggableAspect {
     private final HttpServletRequest httpServletRequest;
 
     @Pointcut("within(@org.springframework.web.bind.annotation.RestController *)")

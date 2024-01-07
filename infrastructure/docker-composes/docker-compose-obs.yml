@@ -71,7 +71,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
 
   grafana:
-    image: grafana/grafana:10.2.2-ubuntu
+    image: grafana/grafana-enterprise:10.0.10
     pull_policy: always
     container_name: grafana
     restart: unless-stopped
@@ -79,6 +79,7 @@ services:
       - "9001:3000"
     volumes:
       - ./data/grafana:/var/lib/grafana
+    user: "$UID:$GID"
     networks:
       - obs
     environment:
@@ -90,7 +91,6 @@ services:
 networks:
   obs:
     driver: bridge
-    name: obs
   elastic:
     driver: bridge
 
