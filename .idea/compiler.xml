@@ -21,6 +21,7 @@
         <module name="notification" />
         <module name="common" />
         <module name="shop-api" />
+        <module name="jacoco-reports" />
         <module name="crm-api" />
         <module name="pem-api" />
         <module name="eureka-server" />
@@ -39,6 +40,7 @@
       <module name="crm-api" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="jacoco-reports" options="-parameters" />
       <module name="notification" options="-parameters" />
       <module name="parent" options="-parameters" />
       <module name="payment-api" options="-parameters" />

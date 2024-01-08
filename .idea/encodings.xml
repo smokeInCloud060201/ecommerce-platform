@@ -9,6 +9,8 @@
     <file url="file://$PROJECT_DIR$/servers/services/eureka-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/servers/services/gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/servers/services/gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/servers/services/jacoco-reports/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/servers/services/jacoco-reports/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/servers/services/notification/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/servers/services/notification/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/servers/services/payment-api/src/main/java" charset="UTF-8" />
