@@ -23,17 +23,18 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -66,9 +67,6 @@ public class UserServiceTest {
 
     @InjectMocks
     private UserServiceImpl userService;
-
-    @Spy
-    private AuthModel authModel;
 
     @BeforeEach
     void setUp() {
@@ -155,7 +153,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testDeleteUser() throws ResourceNotFoundException {
+    void testDeleteUser() {
         // Arrange
         User user = new User();
         user.setId(1L);
@@ -325,8 +323,9 @@ public class UserServiceTest {
         verify(userRepository, times(1)).save(user);
         verify(userMapper, times(1)).mapToDto(user);
     }
+
     @Test
-    void testVerifyOTP() throws BadRequestException, ResourceNotFoundException {
+    void testVerifyOTP() {
         // Arrange
         OTP otp = new OTP();
         otp.setCode("123456");

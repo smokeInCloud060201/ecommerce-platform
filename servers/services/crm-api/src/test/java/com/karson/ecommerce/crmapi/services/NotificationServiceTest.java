@@ -6,7 +6,6 @@ import com.karson.ecommerce.crmapi.entity.OTP;
 import com.karson.ecommerce.crmapi.entity.User;
 import com.karson.ecommerce.crmapi.repositories.OTPRepository;
 import com.karson.ecommerce.crmapi.services.impl.NotificationServiceImpl;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,13 +13,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class NotificationServiceTest {
     @Mock
@@ -28,8 +24,6 @@ public class NotificationServiceTest {
 
     @Mock
     private OTPRepository otpRepository;
-    @Mock
-    private SecureRandom secureRandom;
     @Spy
     @InjectMocks
     private NotificationServiceImpl notificationService;
