@@ -23,7 +23,6 @@
         <module name="shop-api" />
         <module name="crm-api" />
         <module name="pem-api" />
-        <module name="jacoco-reports" />
         <module name="eureka-server" />
         <module name="gateway" />
         <module name="payment-api" />
