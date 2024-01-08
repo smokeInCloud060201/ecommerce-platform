@@ -32,6 +32,9 @@ logging:
     org:
       hibernate:
         type: trace
+kafka:
+  host: localhost:9092
+  group-id-config: payment
 
 cache:
   redis:
