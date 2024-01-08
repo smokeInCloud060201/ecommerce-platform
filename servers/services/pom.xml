@@ -35,7 +35,8 @@
         <mapstruct.version>1.6.0.Beta1</mapstruct.version>
         <jacoco.version>0.8.11</jacoco.version>
         <sonar.coverage.jacoco.xmlReportPaths>
-            ${project.basedir}/jacoco-reports/jacoco-aggregate/jacoco.xml
+            ${project.basedir}/jacoco-reports/jacoco-aggregate/jacoco.xml,
+            ${project.basedir}/../jacoco-reports/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
         <sonar.organization>khanh-dang-hoc-code</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -206,4 +207,12 @@
             </plugin>
         </plugins>
     </build>
+    <scm>
+        <url>https://github.com/smokeInCloud060201/ecommerce-platform</url>
+        <connection>https://github.com/smokeInCloud060201/ecommerce-platform.git</connection>
+        <developerConnection>https://github.com/smokeInCloud060201/ecommerce-platform.git
+        </developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
 </project>
