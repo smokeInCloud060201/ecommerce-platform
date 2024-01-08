@@ -207,12 +207,12 @@
             </plugin>
         </plugins>
     </build>
-    <scm>
-        <url>https://github.com/smokeInCloud060201/ecommerce-platform</url>
-        <connection>https://github.com/smokeInCloud060201/ecommerce-platform.git</connection>
-        <developerConnection>https://github.com/smokeInCloud060201/ecommerce-platform.git
-        </developerConnection>
-        <tag>HEAD</tag>
-    </scm>
+<!--    <scm>-->
+<!--        <url>https://github.com/smokeInCloud060201/ecommerce-platform</url>-->
+<!--        <connection>https://github.com/smokeInCloud060201/ecommerce-platform.git</connection>-->
+<!--        <developerConnection>https://github.com/smokeInCloud060201/ecommerce-platform.git-->
+<!--        </developerConnection>-->
+<!--        <tag>HEAD</tag>-->
+<!--    </scm>-->
 
 </project>
