@@ -27,25 +27,40 @@
     </dependencies>
 
     <build>
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.jacoco</groupId>-->
+<!--                <artifactId>jacoco-maven-plugin</artifactId>-->
+<!--                <version>${jacoco.version}</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <phase>verify</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>report-aggregate</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <dataFileIncludes>-->
+<!--                                <dataFileInclude>**/jacoco.exec</dataFileInclude>-->
+<!--                            </dataFileIncludes>-->
+<!--                            <outputDirectory>-->
+<!--                                ${parent.basedir}/jacoco-aggregate-->
+<!--                            </outputDirectory>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco.version}</version>
                 <executions>
                     <execution>
+                        <id>report-aggregate</id>
                         <phase>verify</phase>
                         <goals>
                             <goal>report-aggregate</goal>
                         </goals>
-                        <configuration>
-                            <dataFileIncludes>
-                                <dataFileInclude>**/jacoco.exec</dataFileInclude>
-                            </dataFileIncludes>
-                            <outputDirectory>
-                                ${project.reporting.outputDirectory}/jacoco-aggregate
-                            </outputDirectory>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
