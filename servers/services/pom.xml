@@ -34,14 +34,9 @@
         <flyway.version>10.4.1</flyway.version>
         <mapstruct.version>1.6.0.Beta1</mapstruct.version>
         <jacoco.version>0.8.11</jacoco.version>
-        <sonar.jacoco.reportPath>${project.basedir}/jacoco-reports/target/jacoco.xml</sonar.jacoco.reportPath>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/jacoco-reports/target/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.organization>khanh-dang-hoc-code</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.issue.ignore.multicriteria>e1</sonar.issue.ignore.multicriteria>
-        <sonar.issue.ignore.multicriteria.e1.ruleKey>java:S1068</sonar.issue.ignore.multicriteria.e1.ruleKey>
-        <sonar.issue.ignore.multicriteria.e1.resourceKey>
-            **/SonarExclude.java
-        </sonar.issue.ignore.multicriteria.e1.resourceKey>
     </properties>
 
     <dependencies>
