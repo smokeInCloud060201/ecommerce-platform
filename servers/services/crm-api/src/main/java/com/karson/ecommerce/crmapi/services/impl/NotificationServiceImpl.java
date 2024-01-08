@@ -8,9 +8,12 @@ import com.karson.ecommerce.crmapi.enums.NotificationEmailType;
 import com.karson.ecommerce.crmapi.repositories.OTPRepository;
 import com.karson.ecommerce.crmapi.services.NotificationService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +22,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class NotificationServiceImpl implements NotificationService {
     private final EmailClient emailClient;
     private final OTPRepository otpRepository;
@@ -46,12 +50,17 @@ public class NotificationServiceImpl implements NotificationService {
 
     private String generateOTP() {
         int otpLength = 6;
-
         StringBuilder otpBuilder = new StringBuilder();
 
-        for (int i = 0; i < otpLength; i++) {
-            int digit = ThreadLocalRandom.current().nextInt(10);
-            otpBuilder.append(digit);
+        try {
+            SecureRandom secureRandom = SecureRandom.getInstanceStrong();
+
+            for (int i = 0; i < otpLength; i++) {
+                int digit = secureRandom.nextInt(10);
+                otpBuilder.append(digit);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            log.error(e.getMessage());
         }
 
         return otpBuilder.toString();
