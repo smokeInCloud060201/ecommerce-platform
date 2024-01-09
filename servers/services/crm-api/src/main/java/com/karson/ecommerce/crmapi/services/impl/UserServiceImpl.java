@@ -100,8 +100,11 @@ public class UserServiceImpl implements UserService {
 
         String accessToken = jwtService.generateAccessToken(contextModel);
         String refreshToken = jwtService.generateRefreshToken(contextModel);
+        TokenDto tokenDto = new TokenDto();
+        tokenDto.setAccessToken(accessToken);
+        tokenDto.setRefreshToken(refreshToken);
 
-        return TokenDto.builder().accessToken(accessToken).refreshToken(refreshToken).build();
+        return tokenDto;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.karson.ecommerce.common.controller;
 
 import com.karson.ecommerce.common.dtos.ResponseDto;
-import com.karson.ecommerce.common.exceptions.AcessDeniedException;
+import com.karson.ecommerce.common.exceptions.AccessDeniedException;
 import com.karson.ecommerce.common.exceptions.BadRequestException;
 import com.karson.ecommerce.common.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -21,8 +21,8 @@ public class BaseController {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ResponseDto<Object> handleAccessDeniedException(AcessDeniedException acessDeniedException) {
-        final String message = acessDeniedException.getMessage();
+    public ResponseDto<Object> handleAccessDeniedException(AccessDeniedException accessDeniedException) {
+        final String message = accessDeniedException.getMessage();
         return ResponseDto.builder()
                 .errorCode(UN_AUTHORIZE)
                 .errorMessage(message)

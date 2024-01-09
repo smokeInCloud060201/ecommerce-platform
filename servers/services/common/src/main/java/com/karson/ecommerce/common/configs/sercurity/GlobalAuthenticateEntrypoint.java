@@ -2,7 +2,6 @@ package com.karson.ecommerce.common.configs.sercurity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.karson.ecommerce.common.dtos.ResponseDto;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.MediaType;

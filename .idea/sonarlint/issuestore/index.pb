@@ -19,8 +19,6 @@ H
 servers/services/pom.xml,6\2\62ac575ebc415191f3b0477b53dd8d12f2c98a79
 U
 %servers/services/notification/pom.xml,5\8\58470ba0c73b908790697f3cca930fad1447092b
-‰
-Yservers/services/common/src/main/java/com/karson/ecommerce/common/aop/LoggableAspect.java,7\a\7a5aff8d5103be5b381ea8c9e5f59d046bc06ed6
 P
  servers/services/crm-api/pom.xml,4\b\4bbc9e9b810af020ce07755a83c3af5655306154
 P
@@ -85,8 +83,6 @@ aservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/controller/U
 iservers/services/notification/src/main/java/com/karson/ecommerce/notification/entities/EmailTemplate.java,2\0\202f197d3e08e919a2a666f0bbb5c62ae28b4aa6
 Ÿ
 oservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/clients/notifications/email/EmailClient.java,b\4\b4f1306a428e2954e0d740754e24de04cbe51518
-—
-gservers/services/common/src/main/java/com/karson/ecommerce/common/configs/kafka/KafkaConfiguration.java,e\5\e5a4486d329b9c536fbe7f33d56ddbd6cbf5d254
 …
 Uservers/services/crm-api/src/main/java/com/karson/ecommerce/crmapi/dtos/TokenDto.java,9\1\91e780ee991b2d19fd9919566055765b5cf2fce5
 ‘
@@ -139,8 +135,6 @@ e
 Makefile,8\3\836efb6e25a091dcb4ff8e1dbb2f0be6a5cbf14c
 [
 +infrastructure/logstash/config/logstash.yml,f\a\fadb13da9125df78189de4406e1e9b1686a82cd9
-P
- services/api/crm-api/crm-api.iml,b\d\bdce3b7429b56a37f666f473969954c3bbfea92a
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 S
