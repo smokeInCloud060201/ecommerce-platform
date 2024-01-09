@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static com.karson.ecommerce.common.constants.ResponseErrorCode.BAD_REQUEST;
 import static com.karson.ecommerce.common.constants.ResponseErrorCode.RESOURCE_NOT_FOUND;
@@ -19,7 +18,7 @@ import static com.karson.ecommerce.common.constants.ResponseErrorCode.UN_AUTHORI
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class BaseControllerTest {
+class BaseControllerTest {
     @Mock
     private AccessDeniedException accessDeniedException;
 

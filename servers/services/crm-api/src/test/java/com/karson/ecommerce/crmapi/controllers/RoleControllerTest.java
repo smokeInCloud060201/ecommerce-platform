@@ -22,7 +22,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class RoleControllerTest {
+class RoleControllerTest {
 
     private MockMvc mockMvc;
 

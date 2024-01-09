@@ -18,7 +18,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-public class JwtServiceTest {
+class JwtServiceTest {
 
     @Mock
     private SecurityConfigProperties securityConfigProperties;
@@ -84,7 +84,7 @@ public class JwtServiceTest {
         return new ContextModel(authModel);
     }
 
-        @Test
+    @Test
     void extractUsernameValidTokenReturnsUsername() {
         String token = generateToken("testUser");
         assertThrows(io.jsonwebtoken.ExpiredJwtException.class, () -> jwtService.extractUsername(token));

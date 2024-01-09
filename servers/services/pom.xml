@@ -40,6 +40,7 @@
         </sonar.coverage.jacoco.xmlReportPaths>
         <sonar.organization>khanh-dang-hoc-code</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.language>java</sonar.language>
     </properties>
 
     <dependencies>

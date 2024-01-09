@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class CrmApiApplicationTest {
+class CrmApiApplicationTest {
     @Autowired
     EmailClient emailClient;
 
@@ -45,7 +45,7 @@ public class CrmApiApplicationTest {
     GlobalAuthenticateEntrypoint globalAuthenticateEntrypoint;
 
     @Test
-    void shouldInjectToContext() {
+    void shouldInjectToContext() throws Exception {
         Assertions.assertNotNull(emailClient);
         Assertions.assertNotNull(crmFilter);
         Assertions.assertNotNull(crmSecurityConfig);

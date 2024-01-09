@@ -3,6 +3,9 @@ package com.karson.ecommerce.crmapi.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.karson.ecommerce.common.utils.JsonUtil;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class JsonUtilTest {
+class JsonUtilTest {
     @Test
     void stringifyValidObjectReturnsJsonString() {
         // Arrange
@@ -62,21 +65,11 @@ public class JsonUtilTest {
         assertEquals(42, map.get("intValue"));
     }
 
+    @Getter
+    @Setter
+    @AllArgsConstructor
     private static class TestObject {
         private String stringValue;
         private int intValue;
-
-        public TestObject(String stringValue, int intValue) {
-            this.stringValue = stringValue;
-            this.intValue = intValue;
-        }
-
-        public String getStringValue() {
-            return stringValue;
-        }
-
-        public int getIntValue() {
-            return intValue;
-        }
     }
 }

@@ -28,7 +28,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class MailServiceServiceTest {
+class MailServiceServiceTest {
     @Mock
     private JavaMailSender mailSender;
 
@@ -40,10 +40,12 @@ public class MailServiceServiceTest {
 
     @InjectMocks
     private MailServiceImpl mailService;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
+
     @Test
     void sendEmailValidDataEmailSent() throws ResourceNotFoundException, MessagingException {
         // Arrange

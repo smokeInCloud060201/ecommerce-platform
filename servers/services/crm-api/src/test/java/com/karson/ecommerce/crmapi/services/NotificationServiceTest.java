@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-public class NotificationServiceTest {
+class NotificationServiceTest {
     @Mock
     private EmailClient emailClient;
 

@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(AuthenticationController.class)
-public class AuthenticationControllerTest {
+class AuthenticationControllerTest {
     private MockMvc mockMvc;
 
     @Mock

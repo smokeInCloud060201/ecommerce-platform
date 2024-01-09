@@ -20,7 +20,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-public class SecurityGlobalConfigTest {
+class SecurityGlobalConfigTest {
     @Mock
     private UserRepository userRepository;
 
